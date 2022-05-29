@@ -141,3 +141,6 @@ cython_debug/
 # Intellij
 .idea/
 
+# security sensitive files
+git_token.txt
+
