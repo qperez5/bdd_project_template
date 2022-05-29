@@ -1,6 +1,8 @@
 pipeline {
-    agent docker {
-        image 'python:3.10.4-slim'
+    agent {
+        docker {
+            image 'python:3.10.4-slim'
+        }
     }
     stages {
         stage('Run behave tests') {
