@@ -1,13 +1,13 @@
 pipeline {
     agent {
-        docker {
-            image 'python:3.10.4-slim'
+        dockerfile {
+            filename 'Dockerfile.build'
+            label 'behave-agent'
         }
     }
     stages {
         stage('Run behave tests') {
             steps {
-                sh 'pip install -r requirements.txt'
                 sh 'behave'
             }
         }
