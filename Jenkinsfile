@@ -11,7 +11,7 @@ pipeline {
             steps {
                 //sh 'behave --junit'
                 sh 'behave -f allure_behave.formatter:AllureFormatter -o reports'
-                sh 'tree'
+                //sh 'tree'
             }
         }
         stage('Generate test report') {
