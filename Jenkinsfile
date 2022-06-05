@@ -9,8 +9,12 @@ pipeline {
                 }
             }
             steps {
-                sh 'ls -la'
-                sh 'behave'
+                sh 'behave --junit'
+            }
+        }
+        stage('Generate test report') {
+            steps {
+                junit 'reports/*.xml'
             }
         }
     }
