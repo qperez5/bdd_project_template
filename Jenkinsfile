@@ -16,6 +16,7 @@ pipeline {
         stage('Generate test report') {
             steps {
                 //junit 'reports/*.xml'
+                sh 'tree'
                 allure results: [[path: 'features/reports']]
             }
         }
