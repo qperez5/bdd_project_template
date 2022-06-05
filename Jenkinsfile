@@ -9,12 +9,14 @@ pipeline {
                 }
             }
             steps {
-                sh 'behave --junit'
+                //sh 'behave --junit'
+                sh 'behave -f allure_behave.formatter:AllureFormatter -o reports'
             }
         }
         stage('Generate test report') {
             steps {
-                junit 'reports/*.xml'
+                //junit 'reports/*.xml'
+                allure results: [[path: 'features/reports']]
             }
         }
     }
