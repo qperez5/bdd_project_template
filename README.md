@@ -30,3 +30,12 @@ Resumen de todo lo anterior (ver pasos de instalacion de cada uno de los prerequ
   - `virtualenv venv`
   - `source venv/bin/activate`
   - `pip install -r requirements.txt` (ver fichero ejemplo)
+
+## Uso de Jenkins
+El repositorio incluye un fichero Jenkinsfile para definir un build pipeline.
+
+El servidor jenkins que ejecute este pipeline ha de tener:
+- Docker
+- Docker pipeline plugin
+- Docker plugin
+- Allure Jenkins Plugin
