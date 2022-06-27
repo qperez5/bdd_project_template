@@ -8,10 +8,23 @@ pipeline {
                     reuseNode true
                 }
             }
-            steps {
-                //sh 'behave --junit'
-                sh 'behave -f allure_behave.formatter:AllureFormatter -o reports'
-                //sh 'tree'
+            parallel {
+                stages {
+                    stage('Run behave tests 1') {
+                        steps {
+                            //sh 'behave --junit'
+                            sh 'behave -f allure_behave.formatter:AllureFormatter -o reports'
+                            //sh 'tree'
+                        }
+                    }
+                    stage('Run behave tests 2') {
+                        steps {
+                            //sh 'behave --junit'
+                            sh 'behave -f allure_behave.formatter:AllureFormatter -o reports'
+                            //sh 'tree'
+                        }
+                    }
+                }
             }
         }
         stage('Generate test report') {
