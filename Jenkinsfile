@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    parameters {
+        booleanParam(name: 'RUN_BLOCK_1', defaultValue: true, description: 'Ejecutar bloque 1')
+        booleanParam(name: 'RUN_BLOCK_2', defaultValue: true, description: 'Ejecutar bloque 2')
+    }
     stages {
         stage('Run behave tests') {
             parallel {
