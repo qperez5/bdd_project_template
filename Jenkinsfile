@@ -14,6 +14,11 @@ pipeline {
                             reuseNode true
                         }
                     }
+                    when {
+                        expression {
+                            return params.RUN_BLOCK_1
+                        }
+                    }
                     steps {
                         //sh 'behave --junit'
                         sh 'behave -f allure_behave.formatter:AllureFormatter -o reports'
@@ -25,6 +30,11 @@ pipeline {
                         dockerfile {
                             filename 'Dockerfile.build'
                             reuseNode true
+                        }
+                    }
+                    when {
+                        expression {
+                            return params.RUN_BLOCK_2
                         }
                     }
                     steps {
