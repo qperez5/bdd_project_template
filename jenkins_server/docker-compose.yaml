@@ -1,0 +1,42 @@
+services:
+
+  jenkins-docker:
+    image: docker:dind
+    privileged: true
+    networks:
+      jenkins:
+        aliases:
+            - docker
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins_home:/var/jenkins_home
+    ports:
+      - "2376:2376"
+      - "3000:3000"
+
+  jenkins-server:
+    image: myjenkins-lts:lts-jdk11
+    build:
+      context: .
+      dockerfile: Dockerfile-jenkins-server
+    networks:
+      - jenkins
+    volumes:
+      - jenkins-docker-certs:/certs/client:ro
+      - jenkins_home:/var/jenkins_home
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    restart: on-failure
+    environment:
+      DOCKER_HOST: 'tcp://docker:2376'
+      DOCKER_CERT_PATH: '/certs/client'
+      DOCKER_TLS_VERIFY: '1'
+
+networks:
+  jenkins:
+volumes:
+  jenkins-docker-certs:
+    external: true
+  jenkins_home:
+    external: true
